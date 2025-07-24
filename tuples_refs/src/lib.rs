@@ -5,6 +5,7 @@ pub fn id(student: &Student) -> u32 {
 
 pub fn first_name(student: &Student) -> &str {
     &student.1
+    
 }
 
 pub fn last_name(student: &Student) -> &str {

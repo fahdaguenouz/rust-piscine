@@ -1,1 +1,0 @@
-/home/faguenou/Desktop/piscine-rust/piscine-rust/scalar/target/debug/scalar: /home/faguenou/Desktop/piscine-rust/piscine-rust/scalar/src/lib.rs /home/faguenou/Desktop/piscine-rust/piscine-rust/scalar/src/main.rs

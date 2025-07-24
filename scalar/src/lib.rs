@@ -1,23 +1,17 @@
-pub fn sum(a: u8, b: u8) -> u8 {
-    a+b
+pub fn sum(x: u8, y: u8) -> u8 {
+    x + y
 }
 
-pub fn diff(a: u16, b: u16) -> u16 {
-    a+b
-
+pub fn diff(x: i16, y: i16) -> i16 {
+    x - y
 }
 
-pub fn pro(a: i8, b: i8) -> i8 {
-    a*b
-
+pub fn pro(x: i8, y: i8) -> i8 {
+    x * y
 }
-
-pub fn quo(a: f32, b: f32) -> f32 {
-    a/b
-
+pub fn quo(x: f32, y: f32) -> f32 {
+    x / y
 }
-
-pub fn rem(a: f32, b: f32) -> f32{
-    a%b
-
+pub fn rem(x: f32, y: f32) -> f32 {
+    x % y
 }

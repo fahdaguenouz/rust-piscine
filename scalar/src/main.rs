@@ -6,7 +6,7 @@ fn main() {
 
     // diff
     println!("diff: {}", diff(234, 2)); // 'diff: 232'
-    // println!("diff: {}", diff(-32768, 32766)); // 'ERROR: attempt to subtract with overflow'
+    println!("diff: {}", diff(-32768, 32766)); // 'ERROR: attempt to subtract with overflow'
 
     // product
     println!("pro: {}", pro(23, 2)); // 'pro: 46'

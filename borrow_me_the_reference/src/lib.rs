@@ -9,10 +9,10 @@ pub fn delete_and_backspace(s: &mut String) {
         println!("{i} {c}");
         
         if c == '-' && !copy.is_empty() {
-            println!("{copy}");
+            // println!("{copy}");
             copy.pop(); 
             i += 1;
-            println!("{copy}");
+            // println!("{copy}");
         } else if c == '+' {
             count += 1;
             i += 1;

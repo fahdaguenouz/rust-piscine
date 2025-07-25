@@ -1,0 +1,59 @@
+pub fn tic_tac_toe(table: [[char; 3]; 3]) -> String {
+    let mut winner =String::new();
+    if horizontal('X',table)||vertical('X',table)||diagonal('X',table){
+        winner="player X won".to_string();
+    }else if horizontal('O',table)||vertical('O',table)||diagonal('O',table) {
+        winner="player O won".to_string();
+    }else {
+         winner="tie".to_string();
+    }
+    
+    winner
+}
+
+pub fn diagonal(player: char, table: [[char; 3]; 3]) -> bool {
+
+    if table[0][0] == player && table[1][1] == player && table[2][2] == player {
+        return true;
+    }
+
+    if table[0][2] == player && table[1][1] == player && table[2][0] == player {
+        return true;
+    }
+
+    false
+}
+
+pub fn horizontal(player: char, table: [[char; 3]; 3]) -> bool {
+
+
+    for (i, row) in table.iter().enumerate() {
+        // println!(" {}: {:?}", i, row);
+        let mut count = 0;
+        for (j, cell) in row.iter().enumerate() {
+            // println!(" ({}, {}): {:?}", i, j, cell);
+            if *cell==player{
+                count+=1;
+            }
+            if count==3{
+               return  true;
+            }
+        }
+    }
+    false
+}
+
+pub fn vertical(player: char, table: [[char; 3]; 3]) -> bool {
+   for col in 0..3 {
+        let mut count = 0;
+        for row in 0..3 {
+            if table[row][col] == player {
+                count += 1;
+            }
+        }
+        if count == 3 {
+            return true;
+        }
+    }
+    false
+}

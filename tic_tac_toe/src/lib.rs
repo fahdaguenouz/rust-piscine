@@ -11,49 +11,49 @@ pub fn tic_tac_toe(table: [[char; 3]; 3]) -> String {
     winner
 }
 
-// pub fn diagonal(player: char, table: [[char; 3]; 3]) -> bool {
+pub fn diagonal(player: char, table: [[char; 3]; 3]) -> bool {
 
-//     if table[0][0] == player && table[1][1] == player && table[2][2] == player {
-//         return true;
-//     }
+    if table[0][0] == player && table[1][1] == player && table[2][2] == player {
+        return true;
+    }
 
-//     if table[0][2] == player && table[1][1] == player && table[2][0] == player {
-//         return true;
-//     }
+    if table[0][2] == player && table[1][1] == player && table[2][0] == player {
+        return true;
+    }
 
-//     false
-// }
+    false
+}
 
-// pub fn horizontal(player: char, table: [[char; 3]; 3]) -> bool {
+pub fn horizontal(player: char, table: [[char; 3]; 3]) -> bool {
 
 
-//     for  row in table.iter() {
-//         // println!(" {}: {:?}", i, row);
-//         let mut count = 0;
-//         for  cell in row.iter() {
-//             // println!(" ({}, {}): {:?}", i, j, cell);
-//             if *cell==player{
-//                 count+=1;
-//             }
-//             if count==3{
-//                return  true;
-//             }
-//         }
-//     }
-//     false
-// }
+    for  row in table.iter() {
+        // println!(" {}: {:?}", i, row);
+        let mut count = 0;
+        for  cell in row.iter() {
+            // println!(" ({}, {}): {:?}", i, j, cell);
+            if *cell==player{
+                count+=1;
+            }
+            if count==3{
+               return  true;
+            }
+        }
+    }
+    false
+}
 
-// pub fn vertical(player: char, table: [[char; 3]; 3]) -> bool {
-//    for col in 0..3 {
-//         let mut count = 0;
-//         for row in 0..3 {
-//             if table[row][col] == player {
-//                 count += 1;
-//             }
-//         }
-//         if count == 3 {
-//             return true;
-//         }
-//     }
-//     false
-// }
+pub fn vertical(player: char, table: [[char; 3]; 3]) -> bool {
+   for col in 0..3 {
+        let mut count = 0;
+        for row in 0..3 {
+            if table[row][col] == player {
+                count += 1;
+            }
+        }
+        if count == 3 {
+            return true;
+        }
+    }
+    false
+}

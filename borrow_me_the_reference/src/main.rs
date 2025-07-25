@@ -9,7 +9,7 @@ fn main() {
         "5+5".to_owned(),
     ];
 
-    delete_and_backspace(&mut a);
+     delete_and_backspace(&mut a);
     do_operations(&mut b);
 
     println!("{:?}", (a, b));

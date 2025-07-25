@@ -1,14 +1,13 @@
 pub fn tic_tac_toe(table: [[char; 3]; 3]) -> String {
-    let mut winner =String::new();
+
     if horizontal('X',table)||vertical('X',table)||diagonal('X',table){
-        winner="player X won".to_string();
+        "player X won".to_string()
     }else if horizontal('O',table)||vertical('O',table)||diagonal('O',table) {
-        winner="player O won".to_string();
+        "player O won".to_string()
     }else {
-         winner="tie".to_string();
+         "tie".to_string()
     }
-    
-    winner
+
 }
 
 pub fn diagonal(player: char, table: [[char; 3]; 3]) -> bool {

@@ -10,7 +10,7 @@ pub fn tic_tac_toe(table: [[char; 3]; 3]) -> String {
 
 }
 
-pub fn diagonal(player: char, table: [[char; 3]; 3]) -> bool {
+pub fn diagonals(player: char, table: [[char; 3]; 3]) -> bool {
 
     if table[0][0] == player && table[1][1] == player && table[2][2] == player {
         return true;

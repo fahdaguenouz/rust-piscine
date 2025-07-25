@@ -1,27 +1,31 @@
 pub fn delete_and_backspace(s: &mut String) {
-
-    while s.contains("+")||s.contains("-"){
-
-        let mut i=0;
-        while i<s.len(){
-        let  ch= s.chars().nth(i);
-           if ch == Some('-'){
-            s.remove(i);
-            s.remove(i-1);
-            i-=1;
-           }else if ch==Some('+'){
-            if i<s.len()-1 && s.chars().nth(i+1)!=Some('+'){
-                s.remove(i+1);
-                s.remove(i);
-                
-            }
-           }
-        //    println!("{:?}",ch);
-           i+=1;
+    let mut ch: Vec<char> = s.chars().collect();
+    let mut copy = String::new();
+    let mut count: i32 = 0;
+    let mut i: usize = 0;
+ 
+    while i < ch.len() {
+        let c = ch[i];
+        println!("{i} {c}");
+        
+        if c == '-' && !copy.is_empty() {
+            println!("{copy}");
+            copy.pop(); 
+            i += 1;
+            println!("{copy}");
+        } else if c == '+' {
+            count += 1;
+            i += 1;
+        } else if count > 0 {
+            count -= 1;
+            i += 1; 
+        } else {
+            copy.push(c);
+            i += 1;
         }
     }
+    *s = copy;
 }
-
 pub fn do_operations(v: &mut [String]) {
     for nbr  in v.iter_mut(){
          if let Some(pos) = nbr.find('+') {

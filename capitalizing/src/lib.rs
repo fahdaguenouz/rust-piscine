@@ -8,9 +8,9 @@ pub fn capitalize_first(input: &str) -> String {
 
 pub fn title_case(input: &str) -> String {
     let mut result = String::new();
-    let mut word = String::new();
-
-    for c in input.chars() {
+    let mut word = capitalize_first(input);
+    let mut capitalize_next=false;
+    for c in word.chars() {
         if c.is_whitespace() {
             result.push(c);
             capitalize_next = true;
@@ -21,11 +21,6 @@ pub fn title_case(input: &str) -> String {
             result.push(c);
         }
     }
-
-    if !word.is_empty() {
-        result.push_str(&capitalize_first(&word));
-    }
-
     result
 }
 pub fn change_case(input: &str) -> String {

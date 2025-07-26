@@ -8,11 +8,11 @@ pub fn median(list: &[i32]) -> i32 {
    let mut sorted = list.to_vec();
     sorted.sort();
     let half =  sorted.len() / 2;
-    // println!("{:?}",sorted);
-    if list.len()%2==0{
-        list[half]
+    println!("{:?}",sorted);
+    if sorted.len()%2==0{
+        (sorted[half - 1] + sorted[half])  / 2
     }else{
-        (sorted[half - 1] + sorted[half+1])  / 2
+        sorted[half]
     }
 }
 

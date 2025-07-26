@@ -1,8 +1,8 @@
 pub fn tic_tac_toe(table: [[char; 3]; 3]) -> String {
 
-    if horizontal('X',table)||vertical('X',table)||diagonal('X',table){
+    if horizontal('X',table)||vertical('X',table)||diagonals('X',table){
         "player X won".to_string()
-    }else if horizontal('O',table)||vertical('O',table)||diagonal('O',table) {
+    }else if horizontal('O',table)||vertical('O',table)||diagonals('O',table) {
         "player O won".to_string()
     }else {
          "tie".to_string()

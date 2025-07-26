@@ -1,6 +1,5 @@
 pub fn arrange_phrase(phrase: &str) -> String {
     
-    
     let mut data: Vec<(String,String)> = vec![];
     let words = phrase.split_whitespace();
     for v in words{

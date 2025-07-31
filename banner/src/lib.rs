@@ -40,20 +40,15 @@ impl FlagsHandler {
 }
 
 pub fn div(a: &str, b: &str) -> Result<String, ParseFloatError> {
-   let af: f32 = a.parse()?;
-    let bf: f32 = b.parse()?;
+   let af: f64 = a.parse::<f64>()?;
+    let bf: f64 = b.parse::<f64>()?;
     Ok((af / bf).to_string())
 
 }
 
 pub fn rem(a: &str, b: &str) -> Result<String, ParseFloatError> {
-    let af: f64 = a.parse()?;
-    let bf: f64 = b.parse()?;
+    let af: f64 = a.parse::<f64>()?;
+    let bf: f64 = b.parse::<f64>()?;
     let result = af % bf;
-
-    if result == 0.0 {
-        Ok("0".to_string())
-    } else {
-        Ok(format!("{:.8}", result))
-    }
+  Ok((af % bf).to_string())
 }

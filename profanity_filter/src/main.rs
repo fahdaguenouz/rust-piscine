@@ -1,3 +1,5 @@
+use profanity_filter::*;
+
 fn main() {
     ["hello there", "", "you are stupid", "stupid"]
         .into_iter()

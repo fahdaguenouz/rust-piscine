@@ -49,5 +49,11 @@ pub fn div(a: &str, b: &str) -> Result<String, ParseFloatError> {
 pub fn rem(a: &str, b: &str) -> Result<String, ParseFloatError> {
     let af: f64 = a.parse()?;
     let bf: f64 = b.parse()?;
-    Ok(format!("{:.8}", af % bf))
+    let result = af % bf;
+
+    if result == 0.0 {
+        Ok("0".to_string())
+    } else {
+        Ok(format!("{:.8}", result))
+    }
 }

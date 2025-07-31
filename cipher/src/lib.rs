@@ -10,7 +10,7 @@ pub fn cipher(original: &str, ciphered: &str) -> Result<(), CipherError> {
         Ok(())
     }else{
         Err(CipherError {
-            expected: format!("expected {}", cipher),
+            expected: format!("{}", cipher),
         })
     }
 }

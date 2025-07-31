@@ -15,7 +15,7 @@ impl Security {
                 Ok(m) => panic!("{}", m),
                 Err(e) => e.to_string(),
             },
-     
+        }
 }
 
 pub fn fetch_data(server: Result<&str, &str>, security_level: Security) -> String {

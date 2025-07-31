@@ -1,50 +1,45 @@
 use chrono::Local;
-
 #[derive(Debug, Eq, PartialEq)]
-pub struct FormError {
-    pub form_values: (String, String),
+pub struct FormError<'a> {
+    pub form_values: (&'a str, &'a str),
     pub date: String,
-    pub err: String,
+    pub err: &'a str,
 }
 
-impl FormError {
-    pub fn new(field_name: &'static str, field_value: String, err: &'static str) -> Self {
+impl<'a> FormError<'a> {
+    pub fn new(field_name: &'a str, field_value: &'a str, err: &'a str) -> Self {
         let now = Local::now();
         FormError {
-            form_values: (field_name.to_string(), field_value),
+            form_values: (field_name, field_value),
             date: now.format("%Y-%m-%d %H:%M:%S").to_string(),
-            err: err.to_string(),
+            err,
         }
     }
 }
 
 #[derive(Debug, Eq, PartialEq)]
-pub struct Form {
-    pub name: String,
-    pub password: String,
+pub struct Form<'a> {
+    pub name: &'a str,
+    pub password: &'a str,
 }
 
-impl Form {
-    pub fn new(name: &str, password: &str) -> Form {
-        Form {
-            name: name.to_string(),
-            password: password.to_string(),
-        }
+impl<'a> Form<'a> {
+    pub fn new(name: &'a str, password: &'a str) -> Form<'a> {
+        Form { name, password }
     }
-    pub fn validate(&self) -> Result<(), FormError> {
-        let name = &self.name;
-        let password = self.password.clone();
+
+    pub fn validate(&self) -> Result<(), FormError<'a>> {
         if self.name.trim().is_empty() {
             return Err(FormError::new(
                 "name",
-                self.name.clone(),
+                self.name,
                 "Username is empty",
             ));
         }
         if self.password.len() < 8 {
             return Err(FormError::new(
                 "password",
-                self.password.clone(),
+                self.password,
                 "Password must be at least 8 characters",
             ));
         }
@@ -55,8 +50,8 @@ impl Form {
         if !(has_letter && has_digit && has_symbol) {
             return Err(FormError::new(
                 "password",
-                self.password.clone(),
-                "Password should be a combination of ASCII numbers, letters and symbols",
+                self.password,
+                "Password must contain ASCII letters, numbers and symbols",
             ));
         }
 

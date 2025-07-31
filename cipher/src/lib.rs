@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 #[derive(Debug, PartialEq)]
 pub struct CipherError {
-   err:String,
+   expected:String,
 }
 
 pub fn cipher(original: &str, ciphered: &str) -> Result<(), CipherError> {
@@ -10,7 +10,7 @@ pub fn cipher(original: &str, ciphered: &str) -> Result<(), CipherError> {
         Ok(())
     }else{
         Err(CipherError {
-            err: format!("expected {}", cipher),
+            expected: format!("expected {}", cipher),
         })
     }
 }

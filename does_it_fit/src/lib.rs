@@ -1,5 +1,5 @@
-pub mod areas_volumes;
-use areas_volumes::{GeometricalShapes, GeometricalVolumes};
+use does_it_fit::{area_fit, GeometricalShapes, volume_fit, GeometricalVolumes};
+
 pub fn area_fit(
     (x, y): (usize, usize),
     kind: areas_volumes::GeometricalShapes,
@@ -28,7 +28,7 @@ pub fn volume_fit(
    let area = (x * y*z) as f64;
 
     let shape_area = match kind {
-      GeometricalVolumes::Cube => areas_volumes::cube_volume(a) as f64,
+         GeometricalVolumes::Cube => areas_volumes::cube_volume(a) as f64,
         GeometricalVolumes::Sphere => areas_volumes::sphere_volume(a),
         GeometricalVolumes::TriangularPyramid => areas_volumes::triangular_pyramid_volume(a as f64, b),
         GeometricalVolumes::Parallelepiped => areas_volumes::parallelepiped_volume(a, b, c) as f64,

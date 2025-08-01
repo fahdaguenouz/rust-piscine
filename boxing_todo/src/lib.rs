@@ -2,7 +2,6 @@ mod err;
 use err::{ParseErr, ReadErr};
 use std::error::Error;
 use std::fs;
-use std::io;
 use std::result::Result;
 use serde::Deserialize;
 

@@ -7,7 +7,6 @@ use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct Task {
-    // define fields according to your JSON structure
     pub id: u32,
     pub description: String,
     pub completed: bool,

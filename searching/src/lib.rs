@@ -5,5 +5,8 @@ pub fn search(array: &[i32], key: i32) -> Option<usize> {
             index=Some(i);
         }
     }
-    index
+   if Some(0)==index{
+    return None;
+   }
+   index
 }

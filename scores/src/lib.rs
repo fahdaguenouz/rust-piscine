@@ -8,7 +8,17 @@ pub fn score(str: &str) -> u64 {
     let score8 = "JX";
     let score10 = "QZ";
     for i in str.chars() {
-        let up = i.to_ascii_uppercase();
+        // let up = i.to_ascii_uppercase();
+        //   count += match ch {
+        //     'A' | 'E' | 'I' | 'O' | 'U' | 'L' | 'N' | 'R' | 'S' | 'T' => 1,
+        //     'D' | 'G' => 2,
+        //     'B' | 'C' | 'M' | 'P' => 3,
+        //     'F' | 'H' | 'V' | 'W' | 'Y' => 4,
+        //     'K' => 5,
+        //     'J' | 'X' => 8,
+        //     'Q' | 'Z' => 10,
+        //     _ => 0, 
+        // };
         if score1.contains(up) {
             count += 1;
         } else if score2.contains(up) {

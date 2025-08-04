@@ -53,11 +53,14 @@ fn get_word(n: u64) -> String {
         let ten = rest / 10;
         let one = rest % 10;
 
-        if ten > 0 {
-            parts.push(tens[ten as usize].to_string());
-        }
-        if one > 0 {
-            parts.push(ones[one as usize].to_string());
+       if ten > 0 {
+                if one > 0 {
+              parts.push(format!("{}-{}", tens[ten as usize], ones[one as usize]));
+             } else {
+        parts.push(tens[ten as usize].to_string());
+            }
+        } else if one > 0 {
+          parts.push(ones[one as usize].to_string());
         }
     }
 

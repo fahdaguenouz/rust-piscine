@@ -1,35 +1,51 @@
 mod err;
-use err::{ParseErr, ReadErr};
+pub use err::{ParseErr, ReadErr};
+
 use std::error::Error;
 use std::fs;
-use std::result::Result;
-use serde::Deserialize;
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Eq, PartialEq, Clone)]
 pub struct Task {
     pub id: u32,
     pub description: String,
-    pub completed: bool,
+    pub level: u32,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Eq, PartialEq)]
 pub struct TodoList {
     pub title: String,
     pub tasks: Vec<Task>,
 }
 
 impl TodoList {
-    pub fn get_todo(file_path: &str) -> Result<Self, Box<dyn Error>> {
-        let contents = fs::read_to_string(file_path)
-            .map_err(|e| Box::new(ReadErr { child_err: Box::new(e) }) as Box<dyn Error>)?;
+    pub fn get_todo(path: &str) -> Result<TodoList, Box<dyn Error>> {
+        let content = match fs::read_to_string(path) {
+            Ok(c) => c,
+            Err(e) => return Err(Box::new(
+                ReadErr {
+                    child_err: Box::new(e),
+                }
+            ))
+        };
         
-        if contents.trim().is_empty() {
-            return Err(Box::new(ParseErr::Empty));
+
+        let parse = json::parse(&content).map_err(|error| ParseErr::Malformed(Box::new(error)))?;
+        if parse["tasks"].is_empty() {
+            return Err(Box::new(ParseErr::Empty))
         }
 
-        let todo_list: TodoList = serde_json::from_str(&contents)
-            .map_err(|e| Box::new(ParseErr::Malformed(Box::new(e))) as Box<dyn Error>)?;
-        
-        Ok(todo_list)
+        Ok(
+            Self {
+                title: parse["title"].as_str().unwrap().to_owned(),
+                tasks: parse["tasks"]
+                    .members()
+                    .map(|m| Task {
+                        id: m["id"].as_u32().unwrap(),
+                        description: m["description"].as_str().unwrap().to_owned(),
+                        level: m["level"].as_u32().unwrap(),
+                    })
+                    .collect(),
+            }
+        )
     }
 }

@@ -1,4 +1,4 @@
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum Role {
     CEO,
     Manager,
@@ -24,7 +24,7 @@ pub type Link = Option<Box<Worker>>;
 
 #[derive(Debug)]
 pub struct Worker {
-    pub role: String,
+    pub role: Role,  
     pub name: String,
     pub next: Link,
 }
@@ -39,7 +39,7 @@ impl WorkEnvironment {
     pub fn add_worker(&mut self, name: &str, role: &str) {
         let new_worker = Box::new(Worker {
             name: name.to_string(),
-            role: role.to_string(),
+            role: Role::from(role), 
             next: self.grade.take(),
         });
 
@@ -55,20 +55,10 @@ impl WorkEnvironment {
         }
     }
 
-   pub fn last_worker(&self) -> Option<(String, Role)> {
-    match &self.grade {
-        Some(worker_box) => {
-            let worker = &**worker_box;
-
-            if worker.role == "CEO" {
-                Some((worker.name.clone(), Role::CEO))
-            } else if worker.role == "Manager" {
-                Some((worker.name.clone(), Role::Manager))
-            } else {
-                Some((worker.name.clone(), Role::Worker))
-            }
-        }
-        None => None,
-    }
+  pub fn last_worker(&self) -> Option<(String, Role)> {
+    self.grade.as_ref().map(|worker| (
+            worker.name.clone(),
+            worker.role.clone(),
+        ))
 }
 }

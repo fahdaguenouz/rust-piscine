@@ -29,7 +29,7 @@ use std::str::FromStr;
 
 // impl FromStr for RhFactor {
 // }
-use std::cmp::{Ord};
+// use std::cmp::{Ord};
 // impl Ord for BloodType {
 // 	// fn ord()->Vec<Self> {
 

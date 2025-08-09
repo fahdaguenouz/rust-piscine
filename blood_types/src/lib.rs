@@ -7,18 +7,18 @@ pub enum Antigen {
 }
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Clone)]
-enum RhFactor {
+pub enum RhFactor {
 	Positive,
 	Negative,
 }
 
-#[derive(PartialEq, Eq, PartialOrd)]
+#[derive(PartialEq, Eq, PartialOrd, Ord)]
 pub struct BloodType {
 	pub antigen: Antigen,
 	pub rh_factor: RhFactor,
 }
 
-use std::cmp::{Ord, Ordering};
+use std::cmp::{Ord};
 
 use std::str::FromStr;
 
@@ -29,7 +29,7 @@ use std::str::FromStr;
 
 // impl FromStr for RhFactor {
 // }
-
+use std::cmp::{Ord};
 // impl Ord for BloodType {
 // 	// fn ord()->Vec<Self> {
 

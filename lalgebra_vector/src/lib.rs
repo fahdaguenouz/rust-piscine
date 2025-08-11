@@ -1,6 +1,5 @@
 use std::fmt::Debug;
-use std::ops::Add;
-use crate::Scalar;
+use std::ops::{Add, Sub, Mul, Div};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Vector<T: Scalar>(pub Vec<T>);
@@ -35,4 +34,53 @@ impl<T: Scalar> Vector<T> {
         }
         Some(sum)
     }
+}
+
+
+
+
+
+
+pub trait Scalar:
+    Copy
+    + PartialEq
+    + Add<Output = Self>
+    + Sub<Output = Self>
+    + Mul<Output = Self>
+    + Div<Output = Self>
+{
+    fn zero() -> Self;
+    fn one() -> Self;
+}
+
+
+impl Scalar for u32 {
+    fn zero() -> Self { 0 }
+    fn one() -> Self { 1 }
+}
+
+impl Scalar for u64 {
+    fn zero() -> Self { 0 }
+    fn one() -> Self { 1 }
+}
+
+impl Scalar for i32 {
+    fn zero() -> Self { 0 }
+    fn one() -> Self { 1 }
+}
+
+impl Scalar for i64 {
+    fn zero() -> Self { 0 }
+    fn one() -> Self { 1 }
+}
+
+
+impl Scalar for f32 {
+    fn zero() -> Self { 0.0 }
+    fn one() -> Self { 1.0 }
+}
+
+impl Scalar for f64 {
+    fn zero() -> Self { 0.0 }
+    fn one() -> Self { 1.0 }
 }

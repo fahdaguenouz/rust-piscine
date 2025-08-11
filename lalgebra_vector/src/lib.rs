@@ -5,19 +5,20 @@ use std::ops::{Add, Sub, Mul, Div};
 pub struct Vector<T: Scalar>(pub Vec<T>);
 
 impl<T: Scalar> Add for Vector<T> {
-    type Output = Self;
+    type Output = Option<Self>;
 
     fn add(self, rhs: Self) -> Self::Output {
         if self.0.len() != rhs.0.len() {
-            panic!("Vectors must have the same length");
+            return None;
         }
-        let mut result = Vec::new();
+        let mut result = Vec::with_capacity(self.0.len());
         for i in 0..self.0.len() {
             result.push(self.0[i] + rhs.0[i]);
         }
-        Vector(result)
+        Some(Vector(result))
     }
 }
+
 
 impl<T: Scalar> Vector<T> {
     pub fn new() -> Self {

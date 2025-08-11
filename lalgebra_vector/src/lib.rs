@@ -9,7 +9,7 @@ impl<T: Scalar> Add for Vector<T> {
 
     fn add(self, rhs: Self) -> Self::Output {
         if self.0.len() != rhs.0.len() {
-            panic!("  dont have  same length");
+            panic!("Vectors must have the same length");
         }
         let mut result = Vec::new();
         for i in 0..self.0.len() {
@@ -35,7 +35,6 @@ impl<T: Scalar> Vector<T> {
         Some(sum)
     }
 }
-
 
 
 

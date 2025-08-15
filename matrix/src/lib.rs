@@ -35,6 +35,35 @@ impl<T: Scalar> Matrix<T> {
         }
         Matrix(parent)
     }
+    pub fn number_of_cols(&self) -> usize {
+        if self.0.is_empty() {
+            0
+        } else {
+            self.0[0].len()
+        }
+    }
+
+    pub fn number_of_rows(&self) -> usize {
+        self.0.len()
+    }
+
+    pub fn row(&self, n: usize) -> Vec<T> {
+        if n < self.0.len() {
+            self.0[n].clone()
+        } else {
+            vec![]
+        }
+    }
+
+    pub fn col(&self, n: usize) -> Vec<T> {
+        let mut col_vec = Vec::new();
+        for row in &self.0 {
+            if n < row.len() {
+                col_vec.push(row[n].clone());
+            }
+        }
+        col_vec
+    }
 }
 
 pub trait Scalar: Copy +

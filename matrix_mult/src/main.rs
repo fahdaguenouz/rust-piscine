@@ -1,5 +1,4 @@
 use matrix_mult::*;
-
 fn main() {
 	let matrix: Matrix<u32> = Matrix(vec![vec![3, 6], vec![8, 0]]);
 	println!("{:?}", matrix.col(0));

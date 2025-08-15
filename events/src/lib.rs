@@ -45,10 +45,10 @@ impl<'a> Event<'a> {
                 content: text.to_string(),
             },
             Registration(duration) => {
-                let total_secs = duration.num_seconds();
-                let hours = total_secs / 3600;
-                let minutes = (total_secs % 3600) / 60;
-                let seconds = total_secs % 60;
+                let sec = duration.num_seconds();
+                let hours = sec / 3600;
+                let minutes = (sec % 3600) / 60;
+                let seconds = sec % 60;
                 let content = format!(
                     "You have {}H:{}M:{}S left before the registration ends",
                     hours, minutes, seconds

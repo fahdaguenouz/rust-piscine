@@ -1,5 +1,5 @@
 use std::ops::{ Add, Sub, Mul, Div };
-#[derive(Debug)]
+#[derive(Debug,PartialEq,Eq)]
 pub struct Matrix<T>(pub Vec<Vec<T>>);
 
 impl<T: Scalar> Matrix<T> {

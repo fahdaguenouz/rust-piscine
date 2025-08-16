@@ -34,16 +34,13 @@ where
 
         let current_value = self.current;
 
-        // Check if current value is beyond the end
         if current_value > self.end {
             self.finished = true;
             return None;
         }
 
-        // Calculate next value
         let next_value = self.current + self.step;
         
-        // If the next value would exceed the end, this is our last iteration
         if next_value > self.end {
             self.finished = true;
         } else {

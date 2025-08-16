@@ -1,45 +1,54 @@
-#[derive(Copy, Clone)]
-pub struct Collatz {
-    pub v: u64,
-    started: bool,
+use iterators::Collatz;
+use iterators::*;
+
+fn main() {
+    println!("{:?}", collatz(4));
+    println!("{:?}", collatz(5));
+    println!("{:?}", collatz(6));
+    println!("{:?}", collatz(7));
+    println!("{:?}", collatz(12));
 }
 
-impl Collatz {
-    pub fn new(n: u64) -> Self {
-        Collatz { v: n, started: false }
-    }
-}
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-impl Iterator for Collatz {
-    type Item = Collatz;
-    
-    fn next(&mut self) -> Option<Self::Item> {
-        if self.v == 0 {
-            return None;
-        }
-        
-        if !self.started {
-            self.started = true;
-            return Some(*self);
-        }
-        
-        if self.v == 1 {
-            return None;
-        }
-        
-        if self.v % 2 == 0 {
-            self.v /= 2;
-        } else {
-            self.v = self.v * 3 + 1;
-        }
-        
-        Some(*self)
-    }
-}
+    #[test]
+    fn test_first_seven() {
+        let test_value = vec![1, 2, 3, 4, 5, 6, 7];
+        let test_result = vec![0, 1, 7, 2, 5, 8, 16];
 
-pub fn collatz(n: u64) -> usize {
-    if n == 0 {
-        return 0;
+        for i in 0..test_value.len() {
+            assert_eq!(test_result[i], collatz(test_value[i]));
+        }
     }
-    Collatz::new(n).count() - 1
+
+    #[test]
+    fn test_big_numbers() {
+        let test_value = vec![54, 888, 4372, 9999];
+        let test_result = vec![112, 72, 33, 91];
+
+        for i in 0..test_value.len() {
+            assert_eq!(test_result[i], collatz(test_value[i]));
+        }
+    }
+
+    #[test]
+    fn test_iterator_for_loop() {
+        let aux = Collatz::new(133);
+        let sequence = vec![
+            133, 400, 200, 100, 50, 25, 76, 38, 19, 58, 29, 88, 44, 22, 11, 34, 17, 52, 26, 13, 40,
+            20, 10, 5, 16, 8, 4, 2, 1,
+        ];
+
+        for (i, value) in aux.enumerate() {
+            assert_eq!(value.v, sequence[i]);
+        }
+    }
+
+    #[test]
+    fn test_iterator_count() {
+        let nb = Collatz::new(133);
+        assert_eq!(nb.count(), 28);
+    }
 }

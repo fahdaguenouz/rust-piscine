@@ -16,9 +16,7 @@ pub struct RomanNumber(pub Vec<RomanDigit>, u32);
 
 impl fmt::Debug for RomanNumber {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        f.debug_tuple("RomanNumber")
-            .field(&self.0)
-            .finish()
+            write!(f,"RomanNumber({:?})",self.0)
     }
 }
 
